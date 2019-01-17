@@ -11,6 +11,7 @@
     <p>It is aware of its environment. For example, here are a few things it knows:</p>
     <table>
         <tr><td>User:</td><td><%= context.user.fullName %></td></tr>
+        <tr><td>Full Context:</td><td><%= contextString %></td></tr>
         <tr><td>Object:</td><td><%= context.environment.record.attributes.type %></td></tr>
         <tr><td>Id:</td><td><%= context.environment.record.Id %></td></tr>
     </table>
