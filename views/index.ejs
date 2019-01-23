@@ -32,6 +32,7 @@
         console.log('Parsing','<%- sr %>');
         sr = JSON.parse('<%- sr %>');
         console.log('publishing');
+        console.log(sr.client);
         Sfdc.canvas.client.publish(sr.client,{name : "statusChanged", payload : {status : 'Completed'}});
         console.log('published');
     });
