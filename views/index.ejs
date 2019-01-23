@@ -23,16 +23,8 @@
     <p>It can also access more data in Salesforce using the REST APIs. With context and APIs, Canvas makes it easy to integrate applications written in any language inside your Salesforce pages.</p>
     <p>For example, the QR Code below is generated in Node.js. Scan it to create a contact on your mobile phone:</p>
     <%- imgTag %>
+    <%=sr%>
 </div>
 </body>
-<script type="text/javascript">
-    Sfdc.canvas(function() {
-        console.log('Parsing','<%=sr%>');
-        sr = JSON.parse('<%=sr%>');
-        console.log('publishing');
-        Sfdc.canvas.client.publish(sr.client,{name : "statusChanged", payload : {status : 'Completed'}});
-        console.log('published');
-    });
-</script>
 
 </html>
