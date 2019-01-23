@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link href="styles.css" rel="stylesheet">
+    <script src="https://raw.githubusercontent.com/forcedotcom/SalesforceCanvasJavascriptSDK/c4286e0257a99b6edabca89c347d7542785af9f2/js/canvas-all.js" type="text/javascript"/>
 </head>
 <body>
 <div class="canvas-app">
@@ -23,4 +24,13 @@
     <p>For example, the QR Code below is generated in Node.js. Scan it to create a contact on your mobile phone:</p>
     <%- imgTag %>
 </div>
+<script type="text/javascript">
+    Sfdc.canvas(function() {
+        console.log('Parsing','<%=sr%>');
+        sr = JSON.parse('<%=sr%>');
+        console.log('publishing');
+        Sfdc.canvas.client.publish(sr.client,{name : "statusChanged", payload : {status : 'Completed'}});
+        console.log('published');
+    });
+</script>
 </body>
