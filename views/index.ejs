@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <link href="styles.css" rel="stylesheet">
-    <script src="js/canvas-all.js" type="text/javascript"/>
+    <script src="js/canvas-all.js" type="text/javascript">
+    </script>
 </head>
 <body>
 <div class="canvas-app">
@@ -26,5 +27,13 @@
     <span id="temp"><%= sr %></span>
 </div>
 </body>
-
+<script type="text/javascript">
+    Sfdc.canvas(function() {
+        console.log('Parsing','<%= sr %>');
+        sr = JSON.parse('<%= sr %>');
+        console.log('publishing');
+        Sfdc.canvas.client.publish(sr.client,{name : "statusChanged", payload : {status : 'Completed'}});
+        console.log('published');
+    });
+</script>
 </html>
