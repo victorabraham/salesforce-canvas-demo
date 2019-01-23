@@ -26,13 +26,5 @@
     <span id="temp"><%= sr %></span>
 </div>
 </body>
-<script type="text/javascript">
-    Sfdc.canvas(function() {
-        console.log('Parsing','<%= sr %>');
-        sr = JSON.parse('<%= sr %>');
-        console.log('publishing');
-        Sfdc.canvas.client.publish(sr.client,{name : "statusChanged", payload : {status : 'Completed'}});
-        console.log('published');
-    });
-</script>
+
 </html>
