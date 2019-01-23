@@ -40,7 +40,7 @@ app.post('/signedrequest', function(req, res) {
             res.render('index', {contextString:JSON.stringify(context), context: context, imgTag: imgTag});
         });
     } else {
-        res.render('index', {sr: req.body.signed_request, contextString:JSON.stringify(context), context: context, imgTag: ""});
+        res.render('index', {sr: JSON.stringify(req.body.signed_request), contextString:JSON.stringify(context), context: context, imgTag: ""});
     }
 
 
