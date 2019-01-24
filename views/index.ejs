@@ -7,25 +7,30 @@
     </script>
 </head>
 <body>
-<div class="canvas-app">
-    <img src="nodejs.png"/>
-    <p>Hello, <%= context.user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).</p>
-    <p>It is aware of its environment. For example, here are a few things it knows:</p>
-    <table>
-        <tr><td>User:</td><td><%= context.user.fullName %></td></tr>
-        <tr><td>Full Context:</td><td><%= contextString %></td></tr>
-        <% if(context.environment.record && context.environment.record.attributes && context.environment.record.Id){ %>
-            <tr><td>Object:</td><td><%= context.environment.record.attributes.type %></td></tr>
-            <tr><td>Id:</td><td><%= context.environment.record.Id %></td></tr>
-          <% } else{ %>  
-            <h1>Not in record context</h1>
-         <% } %>
-    </table>
-    <p>It can also access more data in Salesforce using the REST APIs. With context and APIs, Canvas makes it easy to integrate applications written in any language inside your Salesforce pages.</p>
-    <p>For example, the QR Code below is generated in Node.js. Scan it to create a contact on your mobile phone:</p>
-    <%- imgTag %>
-    <button onclick="fireEvent();">Fire Event</button>
-</div>
+    <div class="canvas-app">
+        <img src="nodejs.png"></img>
+        <p>
+            Hello, <%= context.user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).
+        </p>
+        <p>It is aware of its environment. For example, here are a few things it knows:</p>
+        <table>
+            <tr><td>User:</td><td><%= context.user.fullName %></td></tr>
+            <tr><td>Full Context:</td><td><%= contextString %></td></tr>
+            <% if(context.environment.record && context.environment.record.attributes && context.environment.record.Id){ %>
+                <tr><td>Object:</td><td><%= context.environment.record.attributes.type %></td></tr>
+                <tr><td>Id:</td><td><%= context.environment.record.Id %></td></tr>
+              <% } else{ %> 
+                <tr colspan="2"><td> 
+                    <h1>Not in record context</h1></td>
+                </tr>
+             <% } %>
+        </table>
+        <p>
+            It can also access more data in Salesforce using the REST APIs. With context and APIs, Canvas makes it easy to integrate applications written in any language inside your Salesforce pages.
+        </p>
+        <p>For example, the QR Code below is generated in Node.js. Scan it to create a contact on your mobile phone:</p>
+        <button onclick="fireEvent();">Fire Event</button>
+    </div>
 </body>
 <script type="text/javascript">
     function fireEvent() {
