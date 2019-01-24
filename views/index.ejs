@@ -9,6 +9,7 @@
 <body>
     <div class="canvas-app">
         <img src="nodejs.png"></img>
+        <button onclick="fireEvent();">Fire Event</button>
         <p>
             Hello, <%= context.user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).
         </p>
@@ -29,7 +30,6 @@
             It can also access more data in Salesforce using the REST APIs. With context and APIs, Canvas makes it easy to integrate applications written in any language inside your Salesforce pages.
         </p>
         <p>For example, the QR Code below is generated in Node.js. Scan it to create a contact on your mobile phone:</p>
-        <button onclick="fireEvent();">Fire Event</button>
     </div>
 </body>
 <script type="text/javascript">
@@ -44,7 +44,6 @@
         });
 
     function fireEvent() {
-        console.log("called")
         Sfdc.canvas.client.publish(sr.client,{name : "statusChanged", payload : payloadObj});
         console.log('Published event from Nodejs with payload', payloadObj);
     }
