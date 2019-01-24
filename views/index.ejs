@@ -40,7 +40,7 @@
             console.log(sr);
             var payloadObj = {status : "Completed", leadId: "LeadIdGoesHere"};
             if(sr && sr.context && sr.context.environment && sr.context.environment.parameters) {
-                leadId = sr.context.environment.parameters.recordId;
+                payloadObj.leadId = sr.context.environment.parameters.recordId;
             }
             Sfdc.canvas.client.publish(sr.client,{name : "statusChanged", payload : payloadObj});
             console.log('Published event from Nodejs with payload', payloadObj);
