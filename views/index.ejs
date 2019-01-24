@@ -33,8 +33,9 @@
     </div>
 </body>
 <script type="text/javascript">
+    function fireEvent() {
+        console.log("called");
         Sfdc.canvas(function() {
-            console.log('Parsing','<%- sr %>');
             var sr = JSON.parse('<%- sr %>');
             console.log(sr);
             var payloadObj = {status : "Completed", leadId: "LeadIdGoesHere"};
@@ -44,8 +45,6 @@
             Sfdc.canvas.client.publish(sr.client,{name : "statusChanged", payload : payloadObj});
             console.log('Published event from Nodejs with payload', payloadObj);
         });
-    function fireEvent() {
-        console.log("called");
     }
 </script>
 </html>
