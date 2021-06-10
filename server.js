@@ -22,7 +22,7 @@ app.post('/signedrequest', function (req, res) {
 
     console.log(context.environment);
 
-    var query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
+    var query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'";
 
     var contactRequest = {
         url: instanceUrl + '/services/data/v29.0/query?q=' + query,
