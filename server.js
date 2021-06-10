@@ -12,35 +12,37 @@ app.set('view engine', 'ejs');
 app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
 
-app.post('/signedrequest', function(req, res) {
+app.post('/signedrequest', function (req, res) {
 
     // You could save this information in the user session if needed
-    var signedRequest = decode(req.body.signed_request, consumerSecret),
-        context = signedRequest.context,
-        oauthToken = signedRequest.client.oauthToken,
-        instanceUrl = signedRequest.client.instanceUrl,
+    var signedRequest = decode(req.body.signed_request, consumerSecret);
+    var context = signedRequest.context;
+    var oauthToken = signedRequest.client.oauthToken;
+    var instanceUrl = signedRequest.client.instanceUrl;
 
-        query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
+    console.log(context.environment);
 
-        contactRequest = {
-            url: instanceUrl + '/services/data/v29.0/query?q=' + query,
-            headers: {
-                'Authorization': 'OAuth ' + oauthToken
-            }
-        };
+    var query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
 
-    if(context.environment.record && context.environment.record.Id) {
-        request(contactRequest, function(err, response, body) {
+    var contactRequest = {
+        url: instanceUrl + '/services/data/v29.0/query?q=' + query,
+        headers: {
+            'Authorization': 'OAuth ' + oauthToken
+        }
+    };
+
+    if (context.environment.record && context.environment.record.Id) {
+        request(contactRequest, function (err, response, body) {
             var qr = qrcode.qrcode(4, 'L'),
                 contact = JSON.parse(body).records[0],
                 text = 'MECARD:N:' + contact.LastName + ',' + contact.FirstName + ';TEL:' + contact.Phone + ';EMAIL:' + contact.Email + ';;';
             qr.addData(text);
             qr.make();
             var imgTag = qr.createImgTag(4);
-            res.render('index', {contextString:JSON.stringify(context), context: context, imgTag: imgTag});
+            res.render('index', { contextString: JSON.stringify(context), context: context, imgTag: imgTag });
         });
     } else {
-        res.render('index', {sr: JSON.stringify(signedRequest), contextString:JSON.stringify(context), context: context, imgTag: ""});
+        res.render('index', { sr: JSON.stringify(signedRequest), contextString: JSON.stringify(context), context: context, imgTag: "" });
     }
 
 
