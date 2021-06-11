@@ -23,16 +23,17 @@ app.post('/signedrequest', function (req, res) {
     console.log(signedRequest.client);
     console.log(context);
 
-    var query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'";
-
-    var contactRequest = {
-        url: instanceUrl + '/services/data/v49.0/query?q=' + query,
-        headers: {
-            'Authorization': 'OAuth ' + oauthToken
-        }
-    };
-
     if (context.environment.record && context.environment.record.Id) {
+
+        var query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'";
+
+        var contactRequest = {
+            url: instanceUrl + '/services/data/v49.0/query?q=' + query,
+            headers: {
+                'Authorization': 'OAuth ' + oauthToken
+            }
+        };
+
         request(contactRequest, function (err, response, body) {
             var qr = qrcode.qrcode(4, 'L'),
                 contact = JSON.parse(body).records[0],
