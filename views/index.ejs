@@ -77,7 +77,7 @@
     });
 
     function fireEvent() {
-        Sfdc.canvas.client.publish(sr.client, { name: "suggestion", payload: payloadObj });
+        Sfdc.canvas.client.publish(sr.client, { name: "Suggestion", payload: payloadObj });
         console.log('Published event from Nodejs with payload', payloadObj);
     }
     function listenEvents() {
