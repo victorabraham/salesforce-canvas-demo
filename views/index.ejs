@@ -77,13 +77,13 @@
     });
 
     function fireEvent() {
-        Sfdc.canvas.client.publish(sr.client, { name: "temp.suggestion", payload: payloadObj });
+        Sfdc.canvas.client.publish(sr.client, { name: "cspackage.suggestion", payload: payloadObj });
         console.log('Canvas sent', payloadObj);
     }
     function listenEvents() {
         Sfdc.canvas.client.subscribe(sr.client,
             {
-                name: 'temp.recordchanged', onData: function (event) {
+                name: 'cspackage.recordchanged', onData: function (event) {
                     console.log('Canvas recevied', event);
                     var para = document.createElement("p");
                     var node = document.createTextNode('Got data => ' + event);
