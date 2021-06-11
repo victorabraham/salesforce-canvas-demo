@@ -84,7 +84,10 @@
         Sfdc.canvas.client.subscribe(sr.client,
             {
                 name: 'RecordChanged', onData: function (event) {
-                    console.log("Got data", event);
+                    var para = document.createElement("p");
+                    var node = document.createTextNode('Got data => ' + e);
+                    para.appendChild(node);
+                    document.querySelector('#messages').appendChild(para);
                 }
             }
         );
