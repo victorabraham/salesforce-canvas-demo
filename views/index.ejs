@@ -62,7 +62,7 @@
 </body>
 <script type="text/javascript">
     var sr = {};
-    var payloadObj = { status: "Completed", leadId: "LeadIdGoesHere" };
+    var payloadObj = { recommendation: "Verify identity" };
     Sfdc.canvas(function () {
         sr = JSON.parse('<%- sr %>');
         console.log(sr);
@@ -72,7 +72,7 @@
     });
 
     function fireEvent() {
-        Sfdc.canvas.client.publish(sr.client, { name: "statusChanged", payload: payloadObj });
+        Sfdc.canvas.client.publish(sr.client, { name: "suggestion", payload: payloadObj });
         console.log('Published event from Nodejs with payload', payloadObj);
     }
 </script>
