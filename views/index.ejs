@@ -59,7 +59,7 @@
         </p>
         <div>
             <h2>Listening to Events</h2>
-            <div class="messages">
+            <div id="messages">
 
             </div>
         </div>
@@ -84,10 +84,10 @@
     function listenEvents() {
         Sfdc.canvas.client.subscribe(sr.client,
             {
-                name: 'recordchanged', onData: function (event) {
-                    console.log('Canvas recevied', event);
+                name: 'recordchanged', onData: function (e) {
+                    console.log('Canvas recevied', e);
                     var para = document.createElement("p");
-                    var node = document.createTextNode('Got data => ' + event);
+                    var node = document.createTextNode('Got data at => ' + new Date() + JSON.stringify(e));
                     para.appendChild(node);
                     document.querySelector('#messages').appendChild(para);
                 }
